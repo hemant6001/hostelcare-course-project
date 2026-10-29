@@ -1,0 +1,26 @@
+{
+  "complaints": [
+    {
+      "id": "1",
+      "studentName": "Demo Student One",
+      "studentEmail": "student.one@example.com",
+      "roomNumber": "A-101",
+      "category": "Electrical",
+      "priority": "Medium",
+      "description": "Demo complaint: ceiling fan is making noise.",
+      "date": "2026-10-29",
+      "status": "Pending"
+    },
+    {
+      "id": "2",
+      "studentName": "Demo Student Two",
+      "studentEmail": "student.two@example.com",
+      "roomNumber": "B-202",
+      "category": "Plumbing",
+      "priority": "Low",
+      "description": "Demo complaint: tap is dripping.",
+      "date": "2026-10-29",
+      "status": "In Progress"
+    }
+  ]
+}

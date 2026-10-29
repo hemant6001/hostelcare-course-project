@@ -1,0 +1,96 @@
+{
+  "info": {
+    "_postman_id": "8e1c14b5-c2f0-4c64-8a4f-8b8aaf120008",
+    "name": "HostelCare Experiment 8 - JWT Authentication",
+    "description": "Register and log in to the shared HostelCare Flask API, then test the protected dashboard and invalid tokens.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Register Student",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"username\":\"{{email}}\",\"email\":\"{{email}}\",\"password\":\"{{password}}\",\"name\":\"HostelCare Demo Student\",\"mobile\":\"9876543210\",\"room\":\"A-204\"}",
+          "options": {"raw": {"language": "json"}}
+        },
+        "url": {"raw": "{{baseUrl}}/register", "host": ["{{baseUrl}}"], "path": ["register"]}
+      },
+      "event": [{
+        "listen": "test",
+        "script": {"type": "text/javascript", "exec": [
+          "pm.test('Registration returns HTTP 201', function () { pm.response.to.have.status(201); });"
+        ]}
+      }]
+    },
+    {
+      "name": "2. Login Student and Save JWT",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"username\":\"{{email}}\",\"password\":\"{{password}}\"}",
+          "options": {"raw": {"language": "json"}}
+        },
+        "url": {"raw": "{{baseUrl}}/login", "host": ["{{baseUrl}}"], "path": ["login"]}
+      },
+      "event": [{
+        "listen": "test",
+        "script": {"type": "text/javascript", "exec": [
+          "pm.test('Login returns HTTP 200', function () { pm.response.to.have.status(200); });",
+          "if (pm.response.code === 200) { pm.collectionVariables.set('jwtToken', pm.response.json().token); }"
+        ]}
+      }]
+    },
+    {
+      "name": "3. Protected Dashboard",
+      "request": {
+        "method": "GET",
+        "header": [{"key": "Authorization", "value": "Bearer {{jwtToken}}"}],
+        "url": {"raw": "{{baseUrl}}/dashboard", "host": ["{{baseUrl}}"], "path": ["dashboard"]}
+      },
+      "event": [{
+        "listen": "test",
+        "script": {"type": "text/javascript", "exec": [
+          "pm.test('Valid JWT can access the dashboard', function () { pm.response.to.have.status(200); });"
+        ]}
+      }]
+    },
+    {
+      "name": "4. Dashboard Without Token (expect 401)",
+      "request": {
+        "method": "GET",
+        "url": {"raw": "{{baseUrl}}/dashboard", "host": ["{{baseUrl}}"], "path": ["dashboard"]}
+      },
+      "event": [{
+        "listen": "test",
+        "script": {"type": "text/javascript", "exec": [
+          "pm.test('Missing token is rejected', function () { pm.response.to.have.status(401); });"
+        ]}
+      }]
+    },
+    {
+      "name": "5. Dashboard With Tampered Token (expect 401)",
+      "request": {
+        "method": "GET",
+        "header": [{"key": "Authorization", "value": "Bearer {{jwtToken}}tampered"}],
+        "url": {"raw": "{{baseUrl}}/dashboard", "host": ["{{baseUrl}}"], "path": ["dashboard"]}
+      },
+      "event": [{
+        "listen": "test",
+        "script": {"type": "text/javascript", "exec": [
+          "pm.test('Tampered token is rejected', function () { pm.response.to.have.status(401); });"
+        ]}
+      }]
+    }
+  ],
+  "variable": [
+    {"key": "baseUrl", "value": "http://127.0.0.1:5000"},
+    {"key": "email", "value": "hostelcare.demo@example.com"},
+    {"key": "password", "value": "HostelCare123"},
+    {"key": "jwtToken", "value": ""}
+  ]
+}

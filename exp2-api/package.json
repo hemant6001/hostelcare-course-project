@@ -1,0 +1,12 @@
+{
+  "name": "hostelcare-exp2-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Experiment 2: REST API CRUD demo for HostelCare complaints",
+  "scripts": {
+    "start": "json-server --watch db.json --port 3000"
+  },
+  "devDependencies": {
+    "json-server": "^0.17.4"
+  }
+}

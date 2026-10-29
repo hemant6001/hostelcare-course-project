@@ -1,0 +1,33 @@
+# Node dependencies and build output
+**/node_modules/
+**/dist/
+**/.vite/
+
+# Python virtual environments and cache
+**/.venv/
+**/venv/
+**/__pycache__/
+*.py[cod]
+
+# Java/Maven output and local H2 databases
+**/target/
+*.mv.db
+*.trace.db
+
+# Local JSON Server database contains user-submitted data; use db.example.json in Git
+/exp2-api/db.json
+
+# Local secrets/configuration
+.env
+.env.*
+!.env.example
+
+# Editors and operating-system files
+.vscode/
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HostelCare | Student Dashboard</title>
+
+    <link rel="stylesheet" href="css/user.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="user-header">
+
+        <div>
+            <h1>HostelCare</h1>
+            <p>Student Maintenance Portal</p>
+        </div>
+
+        <div class="user-profile">
+            <span>👨‍🎓</span>
+
+            <div>
+                <strong id="loggedInName">Student</strong>
+                <small id="loggedInRoom">Room: --</small>
+            </div>
+        </div>
+
+    </header>
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+
+        <a href="index.html">Home</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#complaint">Register Complaint</a>
+        <a href="#my-complaints">My Complaints</a>
+        <a href="#announcements">Announcements</a>
+        <a id="reactPortalLink" href="#">React Portal</a>
+        <button type="button" class="logout-button" data-hostelcare-logout="student">Logout</button>
+
+    </nav>
+
+
+    <!-- Main -->
+    <main class="user-container">
+
+        <!-- Welcome -->
+        <section id="dashboard" class="welcome-card">
+
+            <div>
+                <h2>
+                    Welcome back,
+                    <span id="welcomeName">Student</span> 👋
+                </h2>
+
+                <p>
+                    Manage your hostel maintenance complaints
+                    and track their status from one place.
+                </p>
+            </div>
+
+            <div class="room-info">
+                <strong id="welcomeRoom">--</strong>
+                <small>Room Number</small>
+            </div>
+
+        </section>
+
+
+        <!-- Dynamic Statistics -->
+        <section class="stats">
+
+            <div class="stat-card">
+                <span>📝</span>
+
+                <div>
+                    <strong id="totalStudentComplaints">0</strong>
+                    <small>Total Complaints</small>
+                </div>
+            </div>
+
+
+            <div class="stat-card">
+                <span>⏳</span>
+
+                <div>
+                    <strong id="pendingStudentComplaints">0</strong>
+                    <small>Pending</small>
+                </div>
+            </div>
+
+
+            <div class="stat-card">
+                <span>🔧</span>
+
+                <div>
+                    <strong id="progressStudentComplaints">0</strong>
+                    <small>In Progress</small>
+                </div>
+            </div>
+
+
+            <div class="stat-card">
+                <span>✅</span>
+
+                <div>
+                    <strong id="resolvedStudentComplaints">0</strong>
+                    <small>Resolved</small>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- Complaint Registration -->
+        <section id="complaint" class="card">
+
+            <h2>Register Maintenance Complaint</h2>
+
+            <p class="section-description">
+                Report any maintenance issue in your hostel room
+                or common area.
+            </p>
+
+            <form id="userComplaintForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="name">Full Name</label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Your full name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="room">Room Number</label>
+
+                        <input
+                            type="text"
+                            id="room"
+                            placeholder="Your room number"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="category">Complaint Category</label>
+
+                        <select id="category" required>
+
+                            <option value="">Select Category</option>
+                            <option>Electrical</option>
+                            <option>Plumbing</option>
+                            <option>Cleaning</option>
+                            <option>Furniture</option>
+                            <option>Internet</option>
+                            <option>Other</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="priority">Priority</label>
+
+                        <select id="priority" required>
+
+                            <option value="">Select Priority</option>
+                            <option>Low</option>
+                            <option>Medium</option>
+                            <option>High</option>
+                            <option>Emergency</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label for="description">
+                            Complaint Description
+                        </label>
+
+                        <textarea
+                            id="description"
+                            rows="5"
+                            placeholder="Describe your problem..."
+                            required
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <button type="submit">
+                    Submit Complaint
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- My Complaints -->
+        <section id="my-complaints" class="card">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>My Complaints</h2>
+
+                    <p class="section-description">
+                        Track the maintenance requests you have submitted.
+                    </p>
+                </div>
+
+                <select id="statusFilter" aria-label="Filter complaints by status">
+
+                    <option value="all">All Status</option>
+                    <option value="pending">Pending</option>
+                    <option value="progress">In Progress</option>
+                    <option value="resolved">Resolved</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Complaint ID</th>
+                            <th>Category</th>
+                            <th>Room</th>
+                            <th>Priority</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="complaintTable">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- Announcements -->
+        <section id="announcements" class="card">
+
+            <h2>Hostel Announcements</h2>
+
+            <div class="announcements">
+
+                <article>
+                    <span>💧</span>
+
+                    <div>
+                        <h3>Water Supply Maintenance</h3>
+
+                        <p>
+                            Water supply maintenance will be carried
+                            out tomorrow from 10:00 AM to 1:00 PM.
+                        </p>
+                    </div>
+                </article>
+
+
+                <article>
+                    <span>⚡</span>
+
+                    <div>
+                        <h3>Electrical Inspection</h3>
+
+                        <p>
+                            Electrical inspection of hostel rooms
+                            will be conducted this week.
+                        </p>
+                    </div>
+                </article>
+
+
+                <article>
+                    <span>🧹</span>
+
+                    <div>
+                        <h3>Monthly Cleanliness Drive</h3>
+
+                        <p>
+                            Students are requested to cooperate
+                            during the monthly cleanliness drive.
+                        </p>
+                    </div>
+                </article>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>
+            © 2026 HostelCare | Student Maintenance Portal
+        </p>
+    </footer>
+
+
+    <script src="js/hostelcare-students.js"></script>
+    <script src="js/user.js"></script>
+    <script src="js/hostelcare-api.js"></script>
+    <script src="js/hostelcare-logout.js"></script>
+
+</body>
+
+</html>
+
+

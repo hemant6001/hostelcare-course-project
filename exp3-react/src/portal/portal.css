@@ -1,0 +1,38 @@
+#root { min-height: 100vh; }
+.portal-home, .portal-dashboard { min-height: 100vh; background: #f4f7fb; color: #1f2937; font-family: Arial, Helvetica, sans-serif; }
+.role-card button.role-btn { border: 0; cursor: pointer; }
+.role-card .secondary-role-btn { margin-left: 8px; color: #2563eb; background: #eff6ff; }
+.login-card .portal-notice { margin: 0 0 14px; padding: 9px 11px; border-radius: 6px; background: #eff6ff; color: #1d4ed8; font-size: 12px; line-height: 1.5; }
+.field-error { display: block; margin-top: 5px; color: #b91c1c; font-size: 12px; line-height: 1.4; text-align: left; }
+.form-group input[aria-invalid="true"], .form-group select[aria-invalid="true"], .form-group textarea[aria-invalid="true"] { border-color: #dc2626; }
+.portal-notice { padding: 10px 12px; border: 1px solid #bfdbfe; border-radius: 7px; background: #eff6ff; color: #1e40af; font-size: 13px; }
+.api-connection { margin: -10px 2px 0; color: #a05a13; font-size: 12px; }
+.api-connection.connected { color: #187043; }
+.navbar button, .admin-navbar button { padding: 0; border: 0; color: #fff; background: transparent; font: inherit; font-size: 13px; cursor: pointer; }
+.navbar button:hover, .admin-navbar button:hover { color: #bfdbfe; }
+.portal-dashboard .admin-label { padding: 10px 14px; border-radius: 7px; background: #eff6ff; color: #1e40af; font-size: 12px; font-weight: 700; }
+.portal-dashboard .empty-row { padding: 24px; color: #6b7280; text-align: center; }
+.portal-dashboard .announcement-title { margin-bottom: 16px; }
+.portal-dashboard .announcement-title h2 { color: #2563eb; font-size: 19px; }
+.portal-dashboard .priority.emergency { background: #fee2e2; color: #b91c1c; }
+.portal-dashboard .resident-manager { grid-column: 1 / -1; }
+.resident-manager-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; margin-bottom: 16px; }
+.resident-api-status { color: #a05a13; font-size: 12px; }
+.resident-api-status.connected { color: #187043; }
+.resident-form { display: grid; grid-template-columns: repeat(5, minmax(120px, 1fr)); align-items: end; gap: 12px; margin: 0 0 18px; }
+.resident-form label { display: grid; gap: 6px; color: #374151; font-size: 12px; font-weight: 700; }
+.resident-form input { width: 100%; min-width: 0; padding: 9px 10px; border: 1px solid #d1d5db; border-radius: 6px; font: inherit; font-size: 13px; }
+.resident-form-actions { display: flex; align-items: center; gap: 10px; grid-column: 1 / -1; }
+.resident-cancel-btn, .resident-row-actions button { padding: 7px 10px; border: 1px solid #d1d5db; border-radius: 5px; background: #fff; color: #374151; font: inherit; font-size: 12px; cursor: pointer; }
+.resident-row-actions { display: flex; gap: 6px; }
+.resident-row-actions button:last-child { color: #b91c1c; }
+.text-button { padding: 0; border: 0; background: transparent; color: #2563eb; font: inherit; cursor: pointer; }
+.demo-login .text-button { text-decoration: underline; }
+@media (max-width: 650px) {
+  .role-card .secondary-role-btn { margin: 10px 0 0; }
+  .portal-dashboard .dashboard-heading, .portal-dashboard .card-heading { align-items: flex-start; gap: 12px; flex-direction: column; }
+  .portal-dashboard .filters { width: 100%; flex-wrap: wrap; }
+  .portal-dashboard .filters input, .portal-dashboard .filters select { min-width: 0; width: 100%; }
+  .resident-form { grid-template-columns: 1fr; }
+  .resident-form-actions { flex-wrap: wrap; }
+}

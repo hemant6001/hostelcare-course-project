@@ -1,0 +1,225 @@
+/* =========================
+   HostelCare Main Page
+========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7fb;
+    color: #1f2937;
+}
+
+
+/* Header */
+
+.header {
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 18px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    color: #2563eb;
+    font-size: 28px;
+}
+
+.logo p {
+    color: #6b7280;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.header-badge {
+    background: #dbeafe;
+    color: #1d4ed8;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+
+/* Welcome Section */
+
+.welcome-container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 55px auto;
+}
+
+.welcome-section {
+    text-align: center;
+}
+
+.welcome-section h2 {
+    font-size: 36px;
+    color: #111827;
+    margin-bottom: 12px;
+}
+
+.welcome-section > p {
+    color: #6b7280;
+    font-size: 16px;
+}
+
+
+/* Role Cards */
+
+.role-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+.role-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 15px;
+    padding: 35px 28px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+    transition: 0.3s;
+}
+
+.role-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.10);
+}
+
+.role-icon {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.role-card h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #111827;
+}
+
+.role-card p {
+    color: #6b7280;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 22px;
+}
+
+
+/* Buttons */
+
+.role-btn {
+    display: inline-block;
+    text-decoration: none;
+    background: #2563eb;
+    color: white;
+    padding: 11px 20px;
+    border-radius: 7px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.role-btn:hover {
+    background: #1d4ed8;
+}
+
+.admin-btn {
+    background: #111827;
+}
+
+.admin-btn:hover {
+    background: #374151;
+}
+
+
+/* Features */
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.feature-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 22px;
+    text-align: center;
+}
+
+.feature-card span {
+    font-size: 28px;
+}
+
+.feature-card h3 {
+    font-size: 16px;
+    margin: 10px 0 6px;
+}
+
+.feature-card p {
+    color: #6b7280;
+    font-size: 12px;
+}
+
+
+/* Footer */
+
+footer {
+    text-align: center;
+    color: #6b7280;
+    font-size: 12px;
+    padding: 25px;
+}
+
+
+/* Responsive */
+
+@media (max-width: 800px) {
+
+    .role-container {
+        grid-template-columns: 1fr;
+    }
+
+    .features {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .header {
+        padding: 15px 20px;
+    }
+
+    .logo h1 {
+        font-size: 23px;
+    }
+
+    .header-badge {
+        display: none;
+    }
+
+    .welcome-container {
+        width: 92%;
+        margin: 35px auto;
+    }
+
+    .welcome-section h2 {
+        font-size: 28px;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+}

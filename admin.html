@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HostelCare | Admin Dashboard</title>
+
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="js/admin-session-guard.js"></script>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="admin-header">
+
+        <div>
+            <h1>HostelCare</h1>
+            <p>Hostel Administration Portal</p>
+        </div>
+
+        <div class="admin-profile">
+            <span>👨‍💼</span>
+
+            <div>
+                <strong>Hostel Administrator</strong>
+                <small>Admin</small>
+            </div>
+        </div>
+
+    </header>
+
+
+    <!-- Navigation -->
+    <nav class="admin-navbar">
+
+        <a href="index.html">Home</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#complaints">Complaints</a>
+        <a href="#residents">Residents</a>
+        <a href="#announcements">Announcements</a>
+        <button type="button" class="logout-button" data-hostelcare-logout="admin">Logout</button>
+
+    </nav>
+
+
+    <!-- Main -->
+    <main class="admin-container">
+
+        <!-- Dashboard Heading -->
+        <section id="dashboard" class="dashboard-heading">
+
+            <div>
+                <h2>Admin Dashboard</h2>
+
+                <p>
+                    Monitor and manage hostel maintenance activities.
+                </p>
+            </div>
+
+            <button type="button" class="add-btn" id="addAnnouncementBtn">
+                + Add Announcement
+            </button>
+
+        </section>
+
+
+        <!-- Statistics -->
+        <section class="admin-stats">
+
+            <div class="admin-stat-card">
+
+                <div class="stat-icon blue">
+                    📋
+                </div>
+
+                <div>
+                    <strong id="totalComplaintsCount">0</strong>
+                    <span>Total Complaints</span>
+                </div>
+
+            </div>
+
+
+            <div class="admin-stat-card">
+
+                <div class="stat-icon yellow">
+                    ⏳
+                </div>
+
+                <div>
+                    <strong id="pendingComplaintsCount">0</strong>
+                    <span>Pending</span>
+                </div>
+
+            </div>
+
+
+            <div class="admin-stat-card">
+
+                <div class="stat-icon orange">
+                    🔧
+                </div>
+
+                <div>
+                    <strong id="progressComplaintsCount">0</strong>
+                    <span>In Progress</span>
+                </div>
+
+            </div>
+
+
+            <div class="admin-stat-card">
+
+                <div class="stat-icon green">
+                    ✅
+                </div>
+
+                <div>
+                    <strong id="resolvedComplaintsCount">0</strong>
+                    <span>Resolved</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Complaint Management -->
+        <section id="complaints" class="admin-card">
+
+            <div class="card-heading">
+
+                <div>
+                    <h2>Complaint Management</h2>
+
+                    <p>
+                        View and manage all hostel maintenance complaints.
+                    </p>
+                </div>
+
+                <div class="filters">
+
+                    <input
+                        type="search"
+                        id="searchComplaint"
+                        placeholder="Search complaints..."
+                        aria-label="Search complaints"
+                    >
+
+                    <select id="adminStatusFilter" aria-label="Filter complaints by status">
+
+                        <option value="all">All Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="progress">In Progress</option>
+                        <option value="resolved">Resolved</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>ID</th>
+                            <th>Student</th>
+                            <th>Room</th>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Priority</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+
+                    </thead>
+
+
+                    <!--
+                        Student complaints are loaded from localStorage
+                        by js/admin.js. Keep this table body empty.
+                    -->
+                    <tbody id="adminComplaintTable">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <p class="card-description" id="complaintTableNote">
+                Student-submitted complaints will appear in this table.
+            </p>
+
+        </section>
+
+
+        <!-- Bottom Grid -->
+        <section class="bottom-grid">
+
+
+            <!-- Residents -->
+            <div id="residents" class="admin-card">
+
+                <h2>Hostel Residents</h2>
+
+                <p id="hostelResidentsStatus" class="card-description">
+                    Connecting to the Spring Boot resident API…
+                </p>
+
+                <div id="hostelResidents" class="resident-list" aria-live="polite">
+                    <p class="placeholder">Loading resident records…</p>
+                </div>
+
+            </div>
+
+
+            <!-- Complaint Categories -->
+            <div class="admin-card">
+
+                <h2>Complaint Categories</h2>
+
+                <p class="card-description">
+                    Sample distribution of maintenance complaints.
+                </p>
+
+                <div class="category-bars">
+
+                    <div>
+                        <label>
+                            Electrical
+                            <span>12</span>
+                        </label>
+
+                        <div class="bar">
+                            <i style="width: 75%;"></i>
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <label>
+                            Plumbing
+                            <span>8</span>
+                        </label>
+
+                        <div class="bar">
+                            <i style="width: 50%;"></i>
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <label>
+                            Cleaning
+                            <span>15</span>
+                        </label>
+
+                        <div class="bar">
+                            <i style="width: 90%;"></i>
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <label>
+                            Furniture
+                            <span>5</span>
+                        </label>
+
+                        <div class="bar">
+                            <i style="width: 35%;"></i>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Announcements -->
+        <section id="announcements" class="admin-card">
+
+            <div class="card-heading">
+
+                <div>
+                    <h2>Hostel Announcements</h2>
+
+                    <p>
+                        Important notices for hostel residents.
+                    </p>
+                </div>
+
+                <button type="button" class="add-btn" id="newNoticeBtn">
+                    + New Notice
+                </button>
+
+            </div>
+
+
+            <div class="announcement-grid">
+
+                <article>
+
+                    <span>💧</span>
+
+                    <div>
+                        <h3>Water Supply Maintenance</h3>
+
+                        <p>
+                            Temporary water supply interruption
+                            scheduled for tomorrow.
+                        </p>
+
+                        <small>Posted today</small>
+                    </div>
+
+                </article>
+
+
+                <article>
+
+                    <span>⚡</span>
+
+                    <div>
+                        <h3>Electrical Inspection</h3>
+
+                        <p>
+                            Hostel electrical inspection will be
+                            conducted this week.
+                        </p>
+
+                        <small>Posted yesterday</small>
+                    </div>
+
+                </article>
+
+
+                <article>
+
+                    <span>🧹</span>
+
+                    <div>
+                        <h3>Cleanliness Drive</h3>
+
+                        <p>
+                            Monthly hostel cleanliness drive
+                            will be conducted soon.
+                        </p>
+
+                        <small>Posted 3 days ago</small>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 HostelCare | Admin Management Portal
+        </p>
+
+    </footer>
+
+
+    <script src="js/hostelcare-students.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="js/hostelcare-api.js"></script>
+    <script src="js/hostelcare-logout.js"></script>
+
+</body>
+
+</html>
+
